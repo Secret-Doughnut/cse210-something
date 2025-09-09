@@ -24,7 +24,6 @@ class Program
 
         paper._jobs.Add(job1);
         paper._jobs.Add(job2);
-        Console.WriteLine($"This has: {job1}");
 
         paper.ResumeDetails();
     }
