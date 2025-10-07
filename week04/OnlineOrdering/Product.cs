@@ -3,7 +3,7 @@ using System.Transactions;
 
 public class Product
 {
-    Dictionary<int, (string StoreItem, decimal ItemPrice)> ProductCatalog = new Dictionary<int, (string StoreItem, decimal ItemPrice)>
+    private Dictionary<int, (string StoreItem, decimal ItemPrice)> ProductCatalog = new Dictionary<int, (string StoreItem, decimal ItemPrice)>
     {
         [014] = ("Sewing Needles", 0.79m),
         [121] = ("Peanut Butter(s)", 3.21m),
@@ -17,8 +17,8 @@ public class Product
         [999] = ("The Store(s) Itself?!", 999999.99m)
     };
 
-    List<string> ItemName = new List<string>();
-    List<decimal> ListOfPrices = new List<decimal>();
+    private List<string> ItemName = new List<string>();
+    private List<decimal> ListOfPrices = new List<decimal>();
 
 
     public void ProductSorter((int, int) shoppinglist)
