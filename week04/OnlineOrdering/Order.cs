@@ -2,16 +2,20 @@ using System.Reflection.Emit;
 
 public class Order
 {
-    private List<(int ProductID, int Quantities)> ShoppingList = new List<(int ProductID, int Quantities)>();
-    private List<decimal> ListOfPrices = new List<decimal>();
-    private List<string> ItemName = new List<string>();
-    private List<string> OrderHistory = new List<string>();
+    private static List<(int ProductID, int Quantities)> ShoppingList = new List<(int ProductID, int Quantities)>();
+    private static List<decimal> ListOfPrices = new List<decimal>();
+    private static List<string> ItemName = new List<string>();
+    private static List<string> OrderHistory = new List<string>();
 
-    private string _CustomerName = "";
-    private string _CustomerAddress = "";
-    private bool _Check = true;
-    private decimal _TotalPrice = 0;
+    private static string _CustomerName = "";
+    private static string _CustomerAddress = "";
+    private static bool _Check = true;
+    private static decimal _TotalPrice = 0;
 
+    public Order()
+    {
+
+    }
 
     public Order(List<(int ProductID, int Quantities)> shoppinglist, List<string> itemname)
     {
@@ -36,8 +40,9 @@ public class Order
     {
         TotalPriceCalulator();
         string FirstLabel = PackingLabel();
-        //This will call both PackingLabel and ShippingLabel
-        //And merge it together for OrderHistory.
+        string SecondLabel = ShippingLabel();
+        string FinalLabel = $"{FirstLabel}\n\n{SecondLabel}";
+        OrderHistory.Add(FinalLabel);
     }
 
     private void TotalPriceCalulator()
@@ -60,27 +65,26 @@ public class Order
     {
         string PaperLabel = "";
 
+
         foreach (string item in ItemName)
         {
-            Console.WriteLine(item);
+            PaperLabel += $"\n{item}";
         }
-        
-        foreach (var item in ItemName)
-            {
-                Console.WriteLine(item);
-                Console.WriteLine($"This is packing label! {PaperLabel}");
-                PaperLabel += $"\n{item}";
-            }
 
-        Console.WriteLine(PaperLabel);
+        PaperLabel += $"\n\nTotal Price: {_TotalPrice}";
 
         return PaperLabel;
     }
 
     private string ShippingLabel()
     {
-        return "";
+        string PaperLabel = $"Deliver to {_CustomerName} at {_CustomerAddress}\nThank you for shopping with us!";
+
+        return PaperLabel;
     }
 
-
+    public List<string> GetOrderHistory()
+    {
+        return OrderHistory;
+    }
 }
