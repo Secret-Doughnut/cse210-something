@@ -55,18 +55,16 @@ public class RNGMachine
 
     public string AddressRandomizer()
     {
-        string address = "";
         int number = random.Next(0, 3);
-        address = AddressList[number];
+        string address = AddressList[number];
        
         return address;
     }
 
     public string NameRandomizer()
     {
-        string name = "";
         int number = random.Next(0, 5);
-        name = NameList[number];
+        string name = NameList[number];
 
         return name;
     }
